@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
 
 android {
     compileSdkVersion 23
@@ -17,11 +19,42 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'NOTICE'
+        exclude 'asm-license.txt'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
+
+    compile support.appcompat
+    compile support.design
+    compile support.annotations
+    compile support.recyclerview
+    compile support.cardview
+
+    compile square.okhttp.loggingInterceptor
+    compile square.butterknife
+
+    compile square.retrofit.core
+    compile square.retrofit.rxjava
+    compile square.retrofit.gson
+
+    compile rx.java
+    compile rx.android
+    compile rx.androidProguard
+
+    compile dagger.dagger
+    apt dagger.compiler
+    provided dagger.annotations
+
+    compile glide
 }
