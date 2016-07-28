@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">SunRise</string>
     <string name="action_settings">Settings</string>
+
+    <string name="pager.today">Сьогодні</string>
+    <string name="pager.three_days">3 дня</string>
+    <string name="pager.five_days">5 днів</string>
 </resources>
