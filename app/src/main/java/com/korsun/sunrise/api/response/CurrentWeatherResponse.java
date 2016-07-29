@@ -1,5 +1,6 @@
 package com.korsun.sunrise.api.response;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ public class CurrentWeatherResponse {
 
     public Coord coord = null;
 
-    public List<Weather> weather = null;
+    public List<Weather> weather = Collections.emptyList();
 
     public Main main = null;
 
@@ -24,8 +25,6 @@ public class CurrentWeatherResponse {
     public int id = 0;
 
     public String name = null;
-
-    public int cod = 0;
 
 
     public final class Coord {

@@ -1,5 +1,6 @@
 package com.korsun.sunrise.api.response;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  */
 public class DailyResponse {
 
-    public List<Data> list = null;
+    public List<Data> list = Collections.emptyList();
 
     public final class Data {
         public long dt = 0;
@@ -16,11 +17,11 @@ public class DailyResponse {
 
         public Weather weather;
 
-        public float pressure;
+        public int pressure;
 
         public int humidity;
 
-        public float speed;
+        public int speed;
 
         public int deg;
 

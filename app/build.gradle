@@ -56,6 +56,9 @@ dependencies {
     compile square.retrofit.rxjava
     compile square.retrofit.gson
 
+    compile ormlite.core
+    compile ormlite.android
+
     compile rx.java
     compile rx.android
     compile rx.androidProguard
