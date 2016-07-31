@@ -71,7 +71,6 @@ public final class HourlyWeatherInfoDaoImpl
     @Override
     public List<HourlyWeatherInfo> getOneDayWeather(City city) {
         try {
-            long nextDayStartTimestamp = Utils.getNextDayStartTimestamp(city.getLastHourlyUpdate());
             PreparedQuery<HourlyWeatherInfo> query = queryBuilder()
                     .where()
                     .eq(HourlyWeatherInfo.CITY, city)
