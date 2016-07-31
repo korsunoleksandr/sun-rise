@@ -10,8 +10,6 @@ import com.korsun.sunrise.di.module.DbModule;
 import com.korsun.sunrise.log.LogcatTree;
 import com.korsun.sunrise.presentation.base.ComponentProvider;
 
-import org.antlr.runtime.tree.BaseTree;
-
 import timber.log.Timber;
 
 /**

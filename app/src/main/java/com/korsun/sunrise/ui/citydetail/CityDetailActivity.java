@@ -9,8 +9,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
 import com.korsun.sunrise.R;
+import com.korsun.sunrise.db.City;
 import com.korsun.sunrise.di.component.ApplicationComponent;
+import com.korsun.sunrise.di.component.DaggerCityDetailActivityComponent;
 import com.korsun.sunrise.di.component.UiComponent;
+import com.korsun.sunrise.di.module.CityModule;
 import com.korsun.sunrise.presentation.base.BaseActivity;
 import com.korsun.sunrise.presentation.citydetail.CityDetailPresenter;
 import com.korsun.sunrise.presentation.citydetail.CityDetailPresenter.CityDetailView;
@@ -44,7 +47,7 @@ public class CityDetailActivity extends BaseActivity<CityDetailPresenter, CityDe
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tilte");    // TODO: set real
 
-        pagerAdapter = new WeatherPagerAdapter(getSupportFragmentManager(), this);
+        pagerAdapter = new WeatherPagerAdapter(getSupportFragmentManager(), this, getPresenter().getCurrentCity());
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -60,6 +63,10 @@ public class CityDetailActivity extends BaseActivity<CityDetailPresenter, CityDe
 
     @Override
     protected UiComponent<CityDetailPresenter, CityDetailView> createComponent(ApplicationComponent applicationComponent) {
-        return null;
+        City city = (City) getIntent().getSerializableExtra(Constants.ARG_CITY);
+        return DaggerCityDetailActivityComponent.builder()
+                .applicationComponent(applicationComponent)
+                .cityModule(new CityModule(city))
+                .build();
     }
 }

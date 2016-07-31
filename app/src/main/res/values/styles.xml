@@ -16,4 +16,16 @@
 
     <style name="AppTheme.TabLayout" parent="Widget.Design.TabLayout"/>
 
+    <style name="TextAppearance.Caption" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.FullDate" parent="TextAppearance.AppCompat.Title"/>
+
+    <style name="TextAppearance.TemperatureBig" parent="TextAppearance.AppCompat.Display3"/>
+
+    <style name="TextAppearance.Values" parent="TextAppearance.AppCompat.Body2"/>
+
+    <style name="TextAppearance.HeadLine" parent="TextAppearance.AppCompat.Headline"/>
+
 </resources>

@@ -33,7 +33,7 @@ public class DbModule {
     }
 
     @Provides
-    public HourlyWeatherInfoDao provideHourlyDao(DbHelper dbHelper) {
+    public HourlyWeatherInfoDao provideHourlyDao(DbHelper dbHelper, CityDao cityDao) {
         try {
             return new HourlyWeatherInfoDaoImpl(dbHelper.getConnectionSource(), HourlyWeatherInfo.class);
         } catch (SQLException e) {
@@ -42,7 +42,7 @@ public class DbModule {
     }
 
     @Provides
-    public DailyWeatherInfoDao porovideDailyDao(DbHelper dbHelper) {
+    public DailyWeatherInfoDao provideDailyDao(DbHelper dbHelper, CityDao cityDao) {
         try {
             return new DailyWeatherInfoDaoImpl(dbHelper.getConnectionSource(), DailyWeatherInfo.class);
         } catch (SQLException e) {

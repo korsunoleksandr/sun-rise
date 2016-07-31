@@ -1,11 +1,13 @@
 package com.korsun.sunrise.ui.citydetail;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.korsun.sunrise.R;
+import com.korsun.sunrise.db.City;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,27 +20,30 @@ public class WeatherPagerAdapter extends FragmentPagerAdapter {
     private static List<Class<? extends Fragment>> fragmentsToShow = new ArrayList<>();
 
     static {
-        fragmentsToShow.add(null);
-        fragmentsToShow.add(null);
-        fragmentsToShow.add(null);
+        fragmentsToShow.add(TodayWeatherFragment.class);
+        fragmentsToShow.add(TodayWeatherFragment.class);
+        fragmentsToShow.add(TodayWeatherFragment.class);
     }
 
-    Context context;
+    private final Context context;
 
-    public WeatherPagerAdapter(FragmentManager fm, Context context) {
+    private final City city;
+
+    public WeatherPagerAdapter(FragmentManager fm, Context context, City city) {
         super(fm);
         this.context = context;
+        this.city = city;
     }
 
     @Override
     public Fragment getItem(int position) {
-        try {
-            return fragmentsToShow.get(position).newInstance();
-        } catch (InstantiationException e) {
-            throw new RuntimeException("fragment should have empty default public constructor", e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException("fragment  should have empty default public constructor", e);
-        }
+        Bundle args = new Bundle();
+        args.putSerializable(Constants.ARG_CITY, city);
+        return instantiateFragment(args, fragmentsToShow.get(position));
+    }
+
+    private Fragment instantiateFragment(Bundle args, Class<? extends Fragment> cls) {
+        return Fragment.instantiate(context, cls.getName(), args);
     }
 
     @Override

@@ -4,6 +4,8 @@ import com.korsun.sunrise.di.UiScope;
 import com.korsun.sunrise.di.module.CityModule;
 import com.korsun.sunrise.presentation.citydetail.CityDetailPresenter;
 import com.korsun.sunrise.presentation.citydetail.CityDetailPresenter.CityDetailView;
+import com.korsun.sunrise.presentation.citydetail.CityListPresenter;
+import com.korsun.sunrise.ui.citydetail.CityListActivity;
 
 import dagger.Component;
 
@@ -13,7 +15,6 @@ import dagger.Component;
 
 @UiScope
 @Component(
-        dependencies = {ApplicationComponent.class},
-        modules = {CityModule.class})
-public interface CityDetailActivityComponent extends UiComponent<CityDetailPresenter, CityDetailView> {
+        dependencies = {ApplicationComponent.class})
+public interface CityListActivityComponent extends UiComponent<CityListPresenter, CityListPresenter.CityListView> {
 }

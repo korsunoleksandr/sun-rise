@@ -2,7 +2,12 @@
     <string name="app_name">SunRise</string>
     <string name="action_settings">Settings</string>
 
+    <string name="activity_city_list.name">Міста</string>
+
     <string name="pager.today">Протягом доби</string>
     <string name="pager.three_days">Наступні 3 дня</string>
     <string name="pager.five_days">Наступні 5 днів</string>
+
+    <string name="pressure">Тиск: </string>
+    <string name="humidity">Вологість: </string>
 </resources>

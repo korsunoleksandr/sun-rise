@@ -25,6 +25,7 @@ import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
@@ -48,7 +49,9 @@ public final class ApplicationModule {
     @Provides
     public RestApi provideRestApi() {
         HttpLoggingInterceptor httpLoggingInterceptor =
-                new HttpLoggingInterceptor(message -> Timber.d(message));
+                new HttpLoggingInterceptor(message -> {
+                    Timber.d(message);
+                });
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         ApiKeyInterceptor apiKeyInterceptor = new ApiKeyInterceptor();
@@ -63,6 +66,7 @@ public final class ApplicationModule {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Config.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(okHttpClient)
                 .build();
 
@@ -71,12 +75,12 @@ public final class ApplicationModule {
 
     @Provides
     @Singleton
-    public RxSchedulers provideRxSchedulers(RxSchedulersImpl rxSchedulers){
+    public RxSchedulers provideRxSchedulers(RxSchedulersImpl rxSchedulers) {
         return rxSchedulers;
     }
 
     @Provides
-    public SharedPreferences provideSharedPreferences(Context context){
+    public SharedPreferences provideSharedPreferences(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
