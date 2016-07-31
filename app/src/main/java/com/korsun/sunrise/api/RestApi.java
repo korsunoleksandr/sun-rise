@@ -19,8 +19,8 @@ public interface RestApi {
     @GET("weather")
     Observable<CurrentWeatherResponse> getCurrentWeather(@Query("id") int id);
 
-    @GET("weather")
-    Observable<AllCitiesCurrentWeatherResponse> getAllCitiesCurrentWeather(@Query("id") List<Integer> id);
+    @GET("group")
+    Observable<AllCitiesCurrentWeatherResponse> getAllCitiesCurrentWeather(@Query("id") String ids);
 
     @GET("forecast")
     Observable<ThreeHoursResponse> getThreeHoursForecast(@Query("id") int id, @Query("cnt") int cnt);

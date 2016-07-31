@@ -9,9 +9,7 @@ import java.util.List;
 /**
  * Created by okorsun on 30.07.16.
  */
-public class CityDaoImpl
-        extends BaseDaoImpl<City, Integer>
-        implements CityDao {
+public final class CityDaoImpl extends BaseDaoImpl<City, Integer> implements CityDao {
 
     public CityDaoImpl(ConnectionSource connectionSource, Class<City> dataClass) throws SQLException {
         super(connectionSource, dataClass);
@@ -29,11 +27,7 @@ public class CityDaoImpl
     @Override
     public void insertCity(City city) {
         try {
-            callBatchTasks(() -> {
-                    createOrUpdate(city);
-
-                return null;
-            });
+            createOrUpdate(city);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -3,12 +3,14 @@ package com.korsun.sunrise.db;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 /**
  * Created by okorsun on 28.07.16.
  */
 
 @DatabaseTable(tableName = City.TABLE_NAME)
-public class City {
+public class City implements Serializable {
     public static final String TABLE_NAME = "cities";
     public static final String ID = "id";
     public static final String IS_INSTALLED = "is_installed";
@@ -29,7 +31,7 @@ public class City {
     private long lastHourlyUpdate;
 
     @DatabaseField
-    private long lastDaylyUpdate;
+    private long lastDailyUpdate;
 
     public boolean isInstalled() {
         return isInstalled;
@@ -43,8 +45,8 @@ public class City {
         return lastHourlyUpdate;
     }
 
-    public long getLastDaylyUpdate() {
-        return lastDaylyUpdate;
+    public long getLastDailyUpdate() {
+        return lastDailyUpdate;
     }
 
     public int getId() {
@@ -55,8 +57,8 @@ public class City {
         return name;
     }
 
-    public void setLastDaylyUpdate(long lastDaylyUpdate) {
-        this.lastDaylyUpdate = lastDaylyUpdate;
+    public void setLastDailyUpdate(long lastDailyUpdate) {
+        this.lastDailyUpdate = lastDailyUpdate;
     }
 
     public void setLastHourlyUpdate(long lastHourlyUpdate) {
@@ -65,5 +67,49 @@ public class City {
 
     public void setLastCurrentUpdate(long lastCurrentUpdate) {
         this.lastCurrentUpdate = lastCurrentUpdate;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastCurrentUpdate=" + lastCurrentUpdate +
+                ", lastHourlyUpdate=" + lastHourlyUpdate +
+                ", lastDailyUpdate=" + lastDailyUpdate +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        City city = (City) o;
+
+        if (id != city.id) return false;
+        if (lastCurrentUpdate != city.lastCurrentUpdate) return false;
+        if (lastHourlyUpdate != city.lastHourlyUpdate) return false;
+        if (lastDailyUpdate != city.lastDailyUpdate) return false;
+        return name.equals(city.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + (int) (lastCurrentUpdate ^ (lastCurrentUpdate >>> 32));
+        result = 31 * result + (int) (lastHourlyUpdate ^ (lastHourlyUpdate >>> 32));
+        result = 31 * result + (int) (lastDailyUpdate ^ (lastDailyUpdate >>> 32));
+        return result;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

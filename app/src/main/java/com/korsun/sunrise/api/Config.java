@@ -10,7 +10,7 @@ public class Config {
 
     public final static String API_KEY = "ebe3fc7515946833ee5290cd5b0bc3fe";
 
-    public final static String SERVER_URL = "api.openweathermap.org/data/2.5/";
+    public final static String SERVER_URL = "http://api.openweathermap.org/data/2.5/";
 
     public final static String LANGUAGE = "ua";
 

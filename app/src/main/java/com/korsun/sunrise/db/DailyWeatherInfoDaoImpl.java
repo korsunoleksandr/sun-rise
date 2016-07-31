@@ -3,7 +3,6 @@ package com.korsun.sunrise.db;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.support.ConnectionSource;
-import com.korsun.sunrise.engine.LastUpdateStorage;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,8 +23,9 @@ public class DailyWeatherInfoDaoImpl
         try {
             PreparedQuery<DailyWeatherInfo> query = queryBuilder()
                     .where()
-                    .eq(HourlyWeatherInfo.CITY, city)
-                    .ge(HourlyWeatherInfo.TIMESTAMP, city.getLastDaylyUpdate())
+                    .eq(DailyWeatherInfo.CITY, city)
+                    .and()
+                    .ge(HourlyWeatherInfo.TIMESTAMP, city.getLastDailyUpdate())
                     .prepare();
 
             return query(query);
