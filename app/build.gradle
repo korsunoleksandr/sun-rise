@@ -51,6 +51,7 @@ dependencies {
 
     compile square.okhttp.loggingInterceptor
     compile square.butterknife
+    compile square.timber
 
     compile square.retrofit.core
     compile square.retrofit.rxjava
