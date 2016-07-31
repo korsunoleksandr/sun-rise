@@ -2,7 +2,6 @@ package com.korsun.sunrise.engine.converter;
 
 import com.korsun.sunrise.api.response.DailyResponse;
 import com.korsun.sunrise.api.response.Weather;
-import com.korsun.sunrise.common.Utils;
 import com.korsun.sunrise.db.City;
 import com.korsun.sunrise.db.DailyWeatherInfo;
 
@@ -26,7 +25,7 @@ public final class WeeklyWeatherInfoConverter {
         for (DailyResponse.Data dayWeather : dailyResponse.list) {
             result.add(transform(city, dayWeather));
         }
-        city.setLastDaylyUpdate(dailyResponse.list.get(1).dt);
+        city.setLastDailyUpdate(dailyResponse.list.get(1).dt);
         return result;
     }
 

@@ -77,4 +77,9 @@ dependencies {
     provided dagger.annotations
 
     compile glide
+
+    testCompile testing.junit
+    testCompile testing.mockito
+    testCompile testing.robolectric.core
+    testCompile testing.robolectric.multidex
 }

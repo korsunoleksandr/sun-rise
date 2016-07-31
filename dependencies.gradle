@@ -21,6 +21,8 @@ ext {
 
     findbugsAnnotations = "com.google.code.findbugs:annotations:3.0.0"
 
+    robolectricVersion = "3.2-SNAPSHOT"
+
     kotlin = [
             stdlib   : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
             testJunit: "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
@@ -116,11 +118,14 @@ ext {
 
     testing = [
             junit             : "junit:junit:4.12",
-            mockito           : "org.mockito:mockito-core:2.0.44-beta",
+            mockito           : "org.mockito:mockito-core:2.0.83-beta",
             dexmaker          : "com.google.dexmaker:dexmaker:1.2",
             dexmakerMockito   : "com.google.dexmaker:dexmaker-mockito:1.2",
-            mockitoKotlin     : "com.nhaarman:mockito-kotlin:0.3.1",
-            robolectric       : "org.robolectric:robolectric:3.0",
+            mockitoKotlin     : "com.nhaarman:mockito-kotlin:0.5.1",
+            robolectric       : [
+                    core    : "org.robolectric:robolectric:$robolectricVersion",
+                    multidex: "org.robolectric:shadows-multidex:$robolectricVersion",
+            ],
             reflections       : "org.reflections:reflections:0.9.10",
             robolectricExludes: [
                     "commons-logging", "httpclient"

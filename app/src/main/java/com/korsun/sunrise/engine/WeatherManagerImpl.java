@@ -128,12 +128,13 @@ public final class WeatherManagerImpl implements WeatherManager {
     private Observable<List<HourlyWeatherInfo>> fetchAllCitiesCurrentWeather() {
         return RxUtils.create(cityDao::getInstalledCities)
                 .switchMap(cities -> {
-                    List<Integer> ids = new ArrayList<>();
+                    StringBuilder ids = new StringBuilder();
                     for (City city : cities) {
-                        ids.add(city.getId());
+                        ids.append(String.valueOf(city.getId()));
+                        ids.append(',');
                     }
 
-                    return api.getAllCitiesCurrentWeather(ids)
+                    return api.getAllCitiesCurrentWeather(ids.toString())
                             .map(response -> converters.getCurrentWeatherAllCitiesInfoConverter().call(cities, response));
                 })
                 .subscribeOn(rxSchedulers.getNetwork())
