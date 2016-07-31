@@ -1,7 +1,5 @@
 package com.korsun.sunrise.engine;
 
-import com.korsun.sunrise.db.City;
-
 import rx.Observable;
 
 /**
@@ -15,5 +13,7 @@ public interface LastUpdateStorage {
 
 
     Observable<Long> getLastAllCitiesWeatherUpdate();
+
+    void setLastAllCitiesWeatherUpdate(long timestamp);
 
 }
