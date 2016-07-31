@@ -1,4 +1,4 @@
-package com.korsun.sunrise.presentation.citydetail;
+package com.korsun.sunrise.ui.citydetail;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

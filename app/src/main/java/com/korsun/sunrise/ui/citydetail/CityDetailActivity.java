@@ -1,4 +1,4 @@
-package com.korsun.sunrise.presentation.citydetail;
+package com.korsun.sunrise.ui.citydetail;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import com.korsun.sunrise.R;
 import com.korsun.sunrise.di.component.ApplicationComponent;
 import com.korsun.sunrise.di.component.UiComponent;
 import com.korsun.sunrise.presentation.base.BaseActivity;
+import com.korsun.sunrise.presentation.citydetail.CityDetailPresenter;
+import com.korsun.sunrise.presentation.citydetail.CityDetailPresenter.CityDetailView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,9 +21,8 @@ import butterknife.ButterKnife;
 /**
  * Created by okorsun on 28.07.16.
  */
-public class CityDetailActivity extends BaseActivity<CityDetailPresenter, CityDetailPresenter.CityDetailView> implements CityDetailPresenter.CityDetailView {
-
-
+public class CityDetailActivity extends BaseActivity<CityDetailPresenter, CityDetailView>
+        implements CityDetailView {
 
     @Bind(R.id.view_pager)
     ViewPager viewPager;
@@ -53,12 +54,12 @@ public class CityDetailActivity extends BaseActivity<CityDetailPresenter, CityDe
     }
 
     @Override
-    protected CityDetailPresenter.CityDetailView getPresenterView() {
+    protected CityDetailView getPresenterView() {
         return this;
     }
 
     @Override
-    protected UiComponent<CityDetailPresenter, CityDetailPresenter.CityDetailView> createComponent(ApplicationComponent applicationComponent) {
+    protected UiComponent<CityDetailPresenter, CityDetailView> createComponent(ApplicationComponent applicationComponent) {
         return null;
     }
 }
