@@ -26,7 +26,7 @@ public final class WeeklyWeatherInfoConverter {
         for (DailyResponse.Data dayWeather : dailyResponse.list) {
             result.add(transform(city, dayWeather));
         }
-        city.setLastDaylyUpdate(Utils.getNextDayNoonTimestamp());
+        city.setLastDaylyUpdate(dailyResponse.list.get(1).dt);
         return result;
     }
 
@@ -49,6 +49,7 @@ public final class WeeklyWeatherInfoConverter {
         info.setWindSpeed(dayWeather.speed);
         info.setWindDegree(dayWeather.deg);
         info.setTimestamp(dayWeather.dt);
+
         info.setCity(city);
 
         return info;
