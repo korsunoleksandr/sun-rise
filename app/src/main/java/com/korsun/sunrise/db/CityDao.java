@@ -9,4 +9,5 @@ public interface CityDao {
 
     List<City> getInstalledCities();
 
+    void insertCity(City city);
 }
