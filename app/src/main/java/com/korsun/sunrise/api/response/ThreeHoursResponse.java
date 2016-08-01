@@ -15,7 +15,7 @@ public class ThreeHoursResponse {
 
         public Main main;
 
-        public Weather weather;
+        public List<Weather> weather;
 
         public Clouds clouds;
 

@@ -37,8 +37,8 @@ public final class CurrentWeatherAllCitiesInfoConverter {
         info.setTemp(response.main.temp);
         info.setTempMax(response.main.temp_max);
         info.setTempMin(response.main.temp_min);
-        info.setPressure(response.main.pressure);
-        info.setHumidity(response.main.humidity);
+        info.setPressure((int)response.main.pressure);
+        info.setHumidity((int)response.main.humidity);
         info.setDescription(weather.description);
         info.setIcon(weather.icon);
         info.setWindSpeed(response.wind.speed);
@@ -49,6 +49,7 @@ public final class CurrentWeatherAllCitiesInfoConverter {
             if (city.getId() == response.id) {
                 city.setLastCurrentUpdate(response.dt);
                 info.setCity(city);
+                info.setId(city.getId() ^ info.getTimestamp());
                 break;
             }
         }

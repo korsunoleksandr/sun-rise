@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface HourlyWeatherInfoDao {
 
-    List<HourlyWeatherInfo> getAllCitiesCurrentWeather(long timestamp);
+    List<HourlyWeatherInfo> getAllCitiesCurrentWeather(List<City> cities);
 
     List<HourlyWeatherInfo> getThreeDaysWeather(City city);
 

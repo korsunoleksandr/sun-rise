@@ -13,8 +13,8 @@ public class DailyWeatherInfo {
     public static final String TIMESTAMP = "timestamp";
     public static final String CITY = "city_id";
 
-    @DatabaseField(generatedId = true)
-    private int id;
+    @DatabaseField(id = true)
+    private long id;
 
     @DatabaseField(foreign = true, canBeNull = false, uniqueCombo = true, foreignAutoRefresh = true)
     private City city;
@@ -218,7 +218,7 @@ public class DailyWeatherInfo {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + city.hashCode();
         result = 31 * result + (tempMin != +0.0f ? Float.floatToIntBits(tempMin) : 0);
         result = 31 * result + (tempMax != +0.0f ? Float.floatToIntBits(tempMax) : 0);
@@ -234,5 +234,9 @@ public class DailyWeatherInfo {
         result = 31 * result + windDegree;
         result = 31 * result + (int) (timestamp ^ (timestamp >>> 32));
         return result;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

@@ -1,6 +1,9 @@
 package com.korsun.sunrise.common;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 import rx.Observable;
@@ -34,5 +37,12 @@ public class Utils {
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
         return (int) cal.getTimeInMillis()/1000;
+    }
+
+    public static String getTimeString(long timestamp){
+
+        DateFormat sdf = new SimpleDateFormat("HH:mm");
+        Date netDate = (new Date(timestamp * 1000));
+        return sdf.format(netDate);
     }
 }

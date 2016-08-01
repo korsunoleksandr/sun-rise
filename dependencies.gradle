@@ -5,7 +5,7 @@ ext {
 
     daggerVersion = "2.0.2"
 
-    rxJavaVersion = "1.1.1"
+    rxJavaVersion = "1.1.8"
 
     rxBindingVersion = "0.4.0"
 
@@ -77,7 +77,7 @@ ext {
     ]
 
     rx = [
-            android        : "io.reactivex:rxandroid:1.1.0",
+            android        : "io.reactivex:rxandroid:1.2.0",
             androidProguard: "com.artemzin.rxjava:proguard-rules:$rxJavaVersion.0",
             java           : "io.reactivex:rxjava:$rxJavaVersion",
             bindings       : [

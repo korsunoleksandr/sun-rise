@@ -27,4 +27,6 @@ public interface ApplicationComponent {
     RxSchedulers rxSchedulers();
 
     WeatherManager weatherManager();
+
+    CityDao cityDao();
 }

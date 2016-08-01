@@ -35,18 +35,19 @@ public final class WeeklyWeatherInfoConverter {
         Weather weather = dayWeather.weather;
         DailyResponse.Temp temp = dayWeather.temp;
 
+        info.setId(city.getId() ^ dayWeather.dt);
         info.setTempMax(temp.max);
         info.setTempMin(temp.min);
         info.setTempEvenig(temp.eve);
         info.setTempNight(temp.night);
         info.setTempMorning(temp.morn);
         info.setTempDay(temp.day);
-        info.setPressure(dayWeather.pressure);
-        info.setHumidity(dayWeather.humidity);
+        info.setPressure((int) dayWeather.pressure);
+        info.setHumidity((int) dayWeather.humidity);
         info.setDescription(weather.description);
         info.setIcon(weather.icon);
-        info.setWindSpeed(dayWeather.speed);
-        info.setWindDegree(dayWeather.deg);
+        info.setWindSpeed((int) dayWeather.speed);
+        info.setWindDegree((int) dayWeather.deg);
         info.setTimestamp(dayWeather.dt);
 
         info.setCity(city);

@@ -33,13 +33,13 @@ public final class HoursWeatherInfoConverter {
 
     private static HourlyWeatherInfo transform(City city, ThreeHoursResponse.Data hourlyData) {
         HourlyWeatherInfo info = new HourlyWeatherInfo();
-        Weather weather = hourlyData.weather;
-        info.setId((city.getId() ^ (hourlyData.dt >>> 32)));
+        Weather weather = hourlyData.weather.get(0);
+        info.setId((city.getId() ^ hourlyData.dt));
         info.setTemp(hourlyData.main.temp);
         info.setTempMax(hourlyData.main.temp_max);
         info.setTempMin(hourlyData.main.temp_min);
-        info.setPressure(hourlyData.main.pressure);
-        info.setHumidity(hourlyData.main.humidity);
+        info.setPressure((int)hourlyData.main.pressure);
+        info.setHumidity((int)hourlyData.main.humidity);
         info.setDescription(weather.description);
         info.setIcon(weather.icon);
         info.setWindSpeed(hourlyData.wind.speed);

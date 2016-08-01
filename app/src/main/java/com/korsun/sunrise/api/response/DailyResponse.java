@@ -17,13 +17,13 @@ public class DailyResponse {
 
         public Weather weather;
 
-        public int pressure;
+        public float pressure;
 
-        public int humidity;
+        public float humidity;
 
-        public int speed;
+        public float speed;
 
-        public int deg;
+        public float deg;
 
     }
 

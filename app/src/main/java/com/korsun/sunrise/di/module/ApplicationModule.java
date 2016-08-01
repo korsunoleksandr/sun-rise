@@ -75,12 +75,12 @@ public final class ApplicationModule {
 
     @Provides
     @Singleton
-    public RxSchedulers provideRxSchedulers(RxSchedulersImpl rxSchedulers) {
+    public RxSchedulers provideRxSchedulers(RxSchedulersImpl rxSchedulers){
         return rxSchedulers;
     }
 
     @Provides
-    public SharedPreferences provideSharedPreferences(Context context) {
+    public SharedPreferences provideSharedPreferences(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
 
