@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.korsun.sunrise.R;
+import com.korsun.sunrise.common.Utils;
 import com.korsun.sunrise.db.HourlyWeatherInfo;
 import com.pedrogomez.renderers.Renderer;
 
@@ -49,7 +50,7 @@ public final class HourlyTemperatureRenderer extends Renderer<HourlyWeatherInfo>
                 .load("http://openweathermap.org/img/w/" + content.getIcon() + ".png")
                 .into(weatherIcon);
 
-        time.setText(Long.toString(content.getTimestamp()));
+        time.setText(Utils.getTimeString(content.getTimestamp()));
         temperature.setText(Float.toString(content.getTemp()));
     }
 }

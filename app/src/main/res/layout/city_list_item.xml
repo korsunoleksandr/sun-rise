@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tool="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:gravity="center_vertical"
-              android:orientation="horizontal"
-              android:paddingLeft="16dp"
-              android:paddingRight="16dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tool="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/two_line_list_item_height"
+                android:clickable="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Light">
 
     <TextView
         android:id="@+id/city_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.HeadLine"
+        android:layout_alignParentLeft="true"
+        android:paddingTop="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         tool:text="Kyiv"/>
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
-
     <TextView
-        android:id="@+id/temperature"
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.HeadLine"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/city_name"
+        android:textAppearance="@style/TextAppearance.Caption"
         tool:text="30 C"/>
 
     <ImageView
         android:id="@+id/weather_icon"
         android:layout_width="64dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
         android:layout_height="64dp"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/weather_icon"
+        android:textAppearance="@style/TextAppearance.HeadLine"
+        tool:text="30 C"/>
+
+</RelativeLayout>

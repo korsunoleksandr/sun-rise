@@ -114,7 +114,8 @@ public abstract class Presenter<V extends PresenterView> {
 
                 int itemIndex = ArrayUtils.lastIndexOf(items, item);
                 return itemIndex == lastOnNextIndex;
-            }).map(notification -> new Delivery<V, T>(v, notification))).doOnUnsubscribe(subscription::unsubscribe)
+            }).map(notification -> new Delivery<V, T>(v, notification)))
+                    .doOnUnsubscribe(subscription::unsubscribe)
                     .<Delivery<V, T>>compose(Presenter.this.<Delivery<V, T>>bindUntilEvent(LifecycleEvent.DESTROY))
                     .filter(delivery -> delivery.view != null);
         };

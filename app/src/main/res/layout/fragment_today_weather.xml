@@ -8,21 +8,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp">
 
         <TextView
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
+            android:paddingLeft="16dp"
             android:textAppearance="@style/TextAppearance.FullDate"
             tool:text="date"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/current_temp"
@@ -34,8 +38,8 @@
 
             <ImageView
                 android:id="@+id/weather_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
                 android:layout_gravity="right|center_vertical"/>
 
         </LinearLayout>
@@ -43,13 +47,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.Caption"
-                android:text="@string/pressure"/>
+                android:text="@string/pressure"
+                android:textAppearance="@style/TextAppearance.Caption"/>
 
             <TextView
                 android:id="@+id/pressure"
@@ -63,13 +68,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.Caption"
-                android:text="@string/humidity"/>
+                android:text="@string/humidity"
+                android:textAppearance="@style/TextAppearance.Caption"/>
 
             <TextView
                 android:id="@+id/humidity"
@@ -84,6 +90,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/temp_rv"
             android:layout_width="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:layout_height="wrap_content"
             android:clipToPadding="false"/>
 

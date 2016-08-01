@@ -90,7 +90,7 @@ public class WeatherManagerImplTest {
 
         doReturn(cities).when(cityDao).getInstalledCities();
         doReturn(rx.Observable.just(timestamp)).when(lastUpdateStorage).getLastAllCitiesWeatherUpdate();
-        doReturn(Collections.emptyList()).when(hourlyWeatherInfoDao).getAllCitiesCurrentWeather(timestamp);
+        doReturn(Collections.emptyList()).when(hourlyWeatherInfoDao).getAllCitiesCurrentWeather(cities);
         doReturn(Observable.just(response))
                 .when(restApi).getAllCitiesCurrentWeather(String.valueOf(cities.get(0).getId()));
 

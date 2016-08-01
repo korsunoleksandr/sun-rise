@@ -14,9 +14,9 @@
         tool:text="10 C"/>
 
     <ImageView
-        android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/weather_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"/>
 
     <TextView
         android:id="@+id/time"

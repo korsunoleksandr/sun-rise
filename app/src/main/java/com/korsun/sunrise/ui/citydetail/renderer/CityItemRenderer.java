@@ -39,6 +39,9 @@ public class CityItemRenderer extends Renderer<HourlyWeatherInfo> {
     @Bind(R.id.weather_icon)
     ImageView weatherIcon;
 
+    @Bind(R.id.description)
+    TextView description;
+
     @Override
     protected void setUpView(View rootView) {
         ButterKnife.bind(this, rootView);
@@ -64,5 +67,6 @@ public class CityItemRenderer extends Renderer<HourlyWeatherInfo> {
 
         temperature.setText(Float.toString(content.getTemp()));
         cityName.setText(content.getCity().getName());
+        description.setText(content.getDescription());
     }
 }

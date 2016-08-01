@@ -11,6 +11,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import timber.log.Timber;
+
 /**
  * Created by okorsun on 31.07.16.
  */
@@ -37,12 +39,14 @@ public final class TodayWeatherPresenter extends Presenter<TodayWeatherPresenter
     protected void onAttach() {
         weatherManager.getTodayWeather(city)
                 .compose(latestCache())
-                .subscribe(delivery -> {
-                    delivery.split(TodayWeatherView::setData);
-                });
+                .subscribe(delivery ->
+                        delivery.split(TodayWeatherView::setData,
+                                (view, t) -> {
+                                    Timber.e("getToday weather error, %s", t.getMessage());
+                                }));
     }
 
-    public City getCity(){
+    public City getCity() {
         return city;
     }
 }

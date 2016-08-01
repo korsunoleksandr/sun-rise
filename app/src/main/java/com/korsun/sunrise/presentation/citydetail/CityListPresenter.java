@@ -1,9 +1,9 @@
 package com.korsun.sunrise.presentation.citydetail;
 
-import com.korsun.sunrise.db.City;
 import com.korsun.sunrise.db.HourlyWeatherInfo;
 import com.korsun.sunrise.di.UiScope;
 import com.korsun.sunrise.engine.WeatherManager;
+import com.korsun.sunrise.engine.schedulers.RxSchedulers;
 import com.korsun.sunrise.presentation.base.Presenter;
 import com.korsun.sunrise.presentation.base.PresenterView;
 
@@ -11,12 +11,19 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Subscription;
+import rx.subscriptions.Subscriptions;
+import timber.log.Timber;
+
 /**
  * Created by okorsun on 01.08.16.
  */
 
 @UiScope
-public class CityListPresenter extends Presenter<CityListPresenter.CityListView> {
+public final class CityListPresenter extends Presenter<CityListPresenter.CityListView> {
+
+    private Subscription subscription = Subscriptions.empty();
+
     public interface CityListView extends PresenterView {
         void setData(List<HourlyWeatherInfo> data);
     }
@@ -27,13 +34,29 @@ public class CityListPresenter extends Presenter<CityListPresenter.CityListView>
     public CityListPresenter(WeatherManager weatherManager) {
         this.weatherManager = weatherManager;
 
-        weatherManager.getAllCitiesCurrentWeather()
+        /*weatherManager.getAllCitiesCurrentWeather()
                 .compose(latestCache())
                 .subscribe(delivery ->
-                        delivery.split((view, data) -> view.setData(data),
+                        delivery.split(CityListView::setData,
                                 (view, t) -> {
-                                    throw new RuntimeException(t);
-                                }));
+                                    Timber.e("getAllCitiesCurrentWeather error: %s", t.getMessage());
+                                }));*/
     }
 
+    @Override
+    protected void onAttach() {
+        subscription = weatherManager.getAllCitiesCurrentWeather()
+                .subscribe(hourlyWeatherInfos -> {
+                    getView().setData(hourlyWeatherInfos);
+                },
+                        throwable -> {
+                            Timber.e("getAllCitiesCurrentWeather error: %s", throwable.getMessage());
+
+                        });
+    }
+
+    @Override
+    protected void onDetach() {
+        if (!subscription.isUnsubscribed()) subscription.unsubscribe();
+    }
 }

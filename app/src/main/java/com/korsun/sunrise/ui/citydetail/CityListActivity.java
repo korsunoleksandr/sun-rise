@@ -15,6 +15,7 @@ import com.korsun.sunrise.presentation.base.BaseActivity;
 import com.korsun.sunrise.presentation.citydetail.CityListPresenter;
 import com.korsun.sunrise.presentation.citydetail.CityListPresenter.CityListView;
 import com.korsun.sunrise.ui.citydetail.renderer.CityItemRenderer;
+import com.korsun.sunrise.ui.widget.DividerItemDecoration;
 import com.pedrogomez.renderers.ListAdapteeCollection;
 import com.pedrogomez.renderers.RVRendererAdapter;
 import com.pedrogomez.renderers.Renderer;
@@ -52,6 +53,8 @@ public class CityListActivity extends BaseActivity<CityListPresenter, CityListVi
         cityAdapter = createRendererAdapter(renderer);
         RecyclerView.LayoutManager layoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        citiesRV.addItemDecoration(new DividerItemDecoration(this, R.drawable.list_divider));
         citiesRV.setLayoutManager(layoutManager);
         citiesRV.setAdapter(cityAdapter);
     }
@@ -61,7 +64,6 @@ public class CityListActivity extends BaseActivity<CityListPresenter, CityListVi
                 Intent intent = new Intent(this, CityDetailActivity.class);
                 intent.putExtra(Constants.ARG_CITY, city);
                 startActivity(intent);
-                finish();
             };
 
     @Override
