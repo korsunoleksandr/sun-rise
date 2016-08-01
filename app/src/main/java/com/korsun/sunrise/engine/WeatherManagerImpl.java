@@ -18,6 +18,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import rx.Observable;
+import timber.log.Timber;
 
 /**
  * Created by okorsun on 28.07.16.
@@ -53,26 +54,26 @@ public final class WeatherManagerImpl implements WeatherManager {
 
     @Override
     public Observable<List<HourlyWeatherInfo>> getAllCitiesCurrentWeather() {
-        return Observable.mergeDelayError(getAllCitiesCurrentWeatherFromDB(), fetchAllCitiesCurrentWeather())
-                .observeOn(rxSchedulers.getMain());
+        return Observable.mergeDelayError(getAllCitiesCurrentWeatherFromDB().observeOn(rxSchedulers.getMain()),
+                fetchAllCitiesCurrentWeather().observeOn(rxSchedulers.getMain()));
     }
 
     @Override
     public Observable<List<HourlyWeatherInfo>> getTodayWeather(City city) {
-        return Observable.mergeDelayError(getTodayWeatherFromDB(city), fetchTodayWeather(city))
-                .observeOn(rxSchedulers.getMain());
+        return Observable.mergeDelayError(getTodayWeatherFromDB(city).observeOn(rxSchedulers.getMain()),
+                fetchTodayWeather(city).observeOn(rxSchedulers.getMain()));
     }
 
     @Override
     public Observable<List<HourlyWeatherInfo>> getThreeDaysWeather(City city) {
-        return Observable.mergeDelayError(getThreeDaysWeatherFromDB(city), fetchThreeDaysWeather(city))
-                .observeOn(rxSchedulers.getMain());
+        return Observable.mergeDelayError(getThreeDaysWeatherFromDB(city).observeOn(rxSchedulers.getMain()),
+                fetchThreeDaysWeather(city).observeOn(rxSchedulers.getMain()));
     }
 
     @Override
     public Observable<List<DailyWeatherInfo>> getWeekWeather(City city) {
-        return Observable.mergeDelayError(getWeekWeatherFromDB(city), fetchWeekWeather(city))
-                .observeOn(rxSchedulers.getMain());
+        return Observable.mergeDelayError(getWeekWeatherFromDB(city).observeOn(rxSchedulers.getMain()),
+                fetchWeekWeather(city).observeOn(rxSchedulers.getMain()));
     }
 
 
@@ -114,15 +115,16 @@ public final class WeatherManagerImpl implements WeatherManager {
                 .map(response -> converters.getWeeklyWeatherInfoConverter().call(city, response))
                 .subscribeOn(rxSchedulers.getNetwork())
                 .observeOn(rxSchedulers.getDB())
-                .doOnNext( dailyWeatherInfos -> cityDao.insertCity(city))
+                .doOnNext(dailyWeatherInfos -> cityDao.insertCity(city))
                 .doOnNext(dailyWeatherInfoDao::insertSevenDaysWeatherInfo);
     }
 
 
     private Observable<List<HourlyWeatherInfo>> getAllCitiesCurrentWeatherFromDB() {
-        return lastUpdateStorage.getLastAllCitiesWeatherUpdate()
-                .switchMap(timestamp -> RxUtils.create(() -> hourlyWeatherInfoDao.getAllCitiesCurrentWeather(timestamp))
-                        .subscribeOn(rxSchedulers.getDB()));
+        return RxUtils.create(() -> hourlyWeatherInfoDao.getAllCitiesCurrentWeather(cityDao.getInstalledCities()))
+                .doOnNext(hourlyWeatherInfos -> {
+                    hourlyWeatherInfos.size();
+                }).subscribeOn(rxSchedulers.getNetwork());
     }
 
     private Observable<List<HourlyWeatherInfo>> fetchAllCitiesCurrentWeather() {
@@ -135,6 +137,7 @@ public final class WeatherManagerImpl implements WeatherManager {
                     }
 
                     return api.getAllCitiesCurrentWeather(ids.toString())
+                            .doOnNext(response -> lastUpdateStorage.setLastAllCitiesWeatherUpdate(response.list.get(0).dt))
                             .map(response -> converters.getCurrentWeatherAllCitiesInfoConverter().call(cities, response));
                 })
                 .subscribeOn(rxSchedulers.getNetwork())
@@ -144,7 +147,7 @@ public final class WeatherManagerImpl implements WeatherManager {
     }
 
     private void insertCitiesToDb(List<HourlyWeatherInfo> hourlyWeatherInfos) {
-        for (HourlyWeatherInfo hourlyWeatherInfo : hourlyWeatherInfos){
+        for (HourlyWeatherInfo hourlyWeatherInfo : hourlyWeatherInfos) {
             cityDao.insertCity(hourlyWeatherInfo.getCity());
         }
     }
