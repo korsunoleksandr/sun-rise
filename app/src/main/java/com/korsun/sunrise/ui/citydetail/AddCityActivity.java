@@ -72,11 +72,20 @@ public class AddCityActivity extends BaseActivity<AddCityPresenter, AddCityView>
             };
 
 
-
     private void setData(List<City> data) {
         cityAdapter.clear();
         cityAdapter.addAll(data);
         cityAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
