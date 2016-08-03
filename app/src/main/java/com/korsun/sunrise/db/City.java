@@ -21,6 +21,10 @@ public class City implements Serializable {
     @DatabaseField(canBeNull = false)
     private String name;
 
+    public void setInstalled(boolean installed) {
+        isInstalled = installed;
+    }
+
     @DatabaseField(canBeNull = false, columnName = IS_INSTALLED)
     private boolean isInstalled;
 

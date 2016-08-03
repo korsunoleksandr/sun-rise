@@ -1,6 +1,7 @@
 package com.korsun.sunrise.db;
 
 import com.j256.ormlite.dao.BaseDaoImpl;
+import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
@@ -18,7 +19,26 @@ public final class CityDaoImpl extends BaseDaoImpl<City, Integer> implements Cit
     @Override
     public List<City> getInstalledCities() {
         try {
-            return queryForAll();
+            PreparedQuery<City> query = queryBuilder()
+                    .where()
+                    .eq(City.IS_INSTALLED, true)
+                    .prepare();
+
+            return query(query);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<City> getUninstalledCities() {
+        try {
+            PreparedQuery<City> query = queryBuilder()
+                    .where()
+                    .eq(City.IS_INSTALLED, false)
+                    .prepare();
+
+            return query(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
