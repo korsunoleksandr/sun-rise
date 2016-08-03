@@ -22,7 +22,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="16dp"
-            android:text="@string/temperature_during_day"
+            android:text="@string/temperature_during_7_day"
             android:textSize="16sp"/>
 
 
@@ -41,7 +41,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="16dp"
-            android:text="@string/wind_during_day"
+            android:text="@string/wind_during_7_day"
             android:textSize="16sp"/>
 
         <android.support.v7.widget.RecyclerView

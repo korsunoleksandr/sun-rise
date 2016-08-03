@@ -16,11 +16,11 @@ import com.korsun.sunrise.common.Utils;
 import com.korsun.sunrise.db.City;
 import com.korsun.sunrise.db.HourlyWeatherInfo;
 import com.korsun.sunrise.di.component.ApplicationComponent;
-import com.korsun.sunrise.di.component.DaggerTodayWeatherFragmentComponent;
+import com.korsun.sunrise.di.component.DaggerThreeDaysWeatherFragmentComponent;
 import com.korsun.sunrise.di.component.UiComponent;
 import com.korsun.sunrise.di.module.CityModule;
 import com.korsun.sunrise.presentation.base.BaseFragment;
-import com.korsun.sunrise.presentation.citydetail.TodayWeatherPresenter;
+import com.korsun.sunrise.presentation.citydetail.ThreeDaysWeatherPresenter;
 import com.korsun.sunrise.ui.citydetail.renderer.HourlyTemperatureRenderer;
 import com.korsun.sunrise.ui.citydetail.renderer.HourlyWindRenderer;
 import com.pedrogomez.renderers.ListAdapteeCollection;
@@ -33,13 +33,13 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static com.korsun.sunrise.presentation.citydetail.TodayWeatherPresenter.TodayWeatherView;
+import static com.korsun.sunrise.presentation.citydetail.ThreeDaysWeatherPresenter.ThreeDaysWeatherView;
 
 /**
  * Created by okorsun on 31.07.16.
  */
-public class TodayWeatherFragment extends BaseFragment<TodayWeatherPresenter, TodayWeatherView>
-        implements TodayWeatherView {
+public class ThreeDaysWeatherFragment extends BaseFragment<ThreeDaysWeatherPresenter, ThreeDaysWeatherView>
+        implements ThreeDaysWeatherView {
 
     @Bind(R.id.weather_icon)
     ImageView weatherIcon;
@@ -52,7 +52,7 @@ public class TodayWeatherFragment extends BaseFragment<TodayWeatherPresenter, To
     @Bind(R.id.wind_rv)
     RecyclerView windRV;
     @Bind(R.id.pressure)
-    TextView prressure;
+    TextView pressure;
     @Bind(R.id.humidity)
     TextView humidity;
     @Bind(R.id.description)
@@ -64,7 +64,7 @@ public class TodayWeatherFragment extends BaseFragment<TodayWeatherPresenter, To
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_today_weather, container, false);
+        return inflater.inflate(R.layout.fragment_three_days_weather, container, false);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class TodayWeatherFragment extends BaseFragment<TodayWeatherPresenter, To
                     .into(weatherIcon);
             currentTemp.setText(Utils.formatTemp(firstItem.getTemp()));
             date.setText(Utils.getDateString(firstItem.getTimestamp()));
-            prressure.setText(Integer.toString(firstItem.getPressure()) + " Па");
+            pressure.setText(Integer.toString(firstItem.getPressure()) + " Па");
             humidity.setText(Integer.toString(firstItem.getHumidity()) + "%");
             description.setText(Utils.capitalise(firstItem.getDescription()));
         }
@@ -105,14 +105,14 @@ public class TodayWeatherFragment extends BaseFragment<TodayWeatherPresenter, To
     }
 
     @Override
-    protected TodayWeatherView getPresenterView() {
+    protected ThreeDaysWeatherView getPresenterView() {
         return this;
     }
 
     @Override
-    protected UiComponent<TodayWeatherPresenter, TodayWeatherView> createComponent(ApplicationComponent applicationComponent) {
+    protected UiComponent<ThreeDaysWeatherPresenter, ThreeDaysWeatherView> createComponent(ApplicationComponent applicationComponent) {
         City city = (City) getArguments().getSerializable(Constants.ARG_CITY);
-        return DaggerTodayWeatherFragmentComponent.builder()
+        return DaggerThreeDaysWeatherFragmentComponent.builder()
                 .applicationComponent(applicationComponent)
                 .cityModule(new CityModule(city))
                 .build();

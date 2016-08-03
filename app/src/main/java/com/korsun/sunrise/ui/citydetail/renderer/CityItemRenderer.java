@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.korsun.sunrise.R;
+import com.korsun.sunrise.common.Utils;
 import com.korsun.sunrise.db.City;
 import com.korsun.sunrise.db.HourlyWeatherInfo;
 import com.pedrogomez.renderers.Renderer;
@@ -65,8 +66,8 @@ public class CityItemRenderer extends Renderer<HourlyWeatherInfo> {
                 .centerCrop()
                 .into(weatherIcon);
 
-        temperature.setText(Float.toString(content.getTemp()));
+        temperature.setText(Utils.formatTemp(content.getTemp()));
         cityName.setText(content.getCity().getName());
-        description.setText(content.getDescription());
+        this.description.setText(Utils.capitalise(content.getDescription()));
     }
 }

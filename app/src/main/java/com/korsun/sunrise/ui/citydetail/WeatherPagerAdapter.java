@@ -21,8 +21,8 @@ public class WeatherPagerAdapter extends FragmentPagerAdapter {
 
     static {
         fragmentsToShow.add(TodayWeatherFragment.class);
-        fragmentsToShow.add(TodayWeatherFragment.class);
-        fragmentsToShow.add(TodayWeatherFragment.class);
+        fragmentsToShow.add(ThreeDaysWeatherFragment.class);
+        fragmentsToShow.add(SevenDaysWeatherFragment.class);
     }
 
     private final Context context;

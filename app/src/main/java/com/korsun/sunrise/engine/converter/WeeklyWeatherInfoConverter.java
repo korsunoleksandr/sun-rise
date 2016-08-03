@@ -32,7 +32,7 @@ public final class WeeklyWeatherInfoConverter {
 
     private static DailyWeatherInfo transform(City city, DailyResponse.Data dayWeather) {
         DailyWeatherInfo info = new DailyWeatherInfo();
-        Weather weather = dayWeather.weather;
+        Weather weather = dayWeather.weather.get(0);
         DailyResponse.Temp temp = dayWeather.temp;
 
         info.setId(city.getId() ^ dayWeather.dt);

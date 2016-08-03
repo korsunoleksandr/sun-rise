@@ -1,10 +1,7 @@
 package com.korsun.sunrise.db;
 
-import android.databinding.tool.util.L;
-
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.stmt.PreparedQuery;
-import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import com.korsun.sunrise.common.Utils;
@@ -77,9 +74,7 @@ public final class HourlyWeatherInfoDaoImpl
                     .where()
                     .eq(HourlyWeatherInfo.CITY, city)
                     .and()
-                    .ge(HourlyWeatherInfo.TIMESTAMP, nextDayStartTimestamp)
-                    .and()
-                    .lt(HourlyWeatherInfo.TIMESTAMP, nextDayStartTimestamp + LastUpdateStorage.TREE_DAYS_STAMP)
+                    .between(HourlyWeatherInfo.TIMESTAMP, nextDayStartTimestamp, nextDayStartTimestamp + LastUpdateStorage.TREE_DAYS_STAMP)
                     .prepare();
 
             return query(query);
@@ -96,13 +91,6 @@ public final class HourlyWeatherInfoDaoImpl
                     .eq(HourlyWeatherInfo.CITY, city)
                     .and()
                     .between(HourlyWeatherInfo.TIMESTAMP, city.getLastHourlyUpdate(), city.getLastHourlyUpdate() + LastUpdateStorage.ONE_DAY_STAMP)
-            /*PreparedQuery<HourlyWeatherInfo> query = queryBuilder()
-                    .where()
-                    .eq(HourlyWeatherInfo.CITY, city)
-                    .and()
-                    .ge(HourlyWeatherInfo.TIMESTAMP, city.getLastHourlyUpdate())
-                    .and()
-                    .lt(HourlyWeatherInfo.TIMESTAMP, city.getLastHourlyUpdate() + LastUpdateStorage.ONE_DAY_STAMP)*/
                     .prepare();
 
             return query(query);

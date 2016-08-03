@@ -1,5 +1,6 @@
 package com.korsun.sunrise.ui.citydetail.renderer;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,12 @@ import butterknife.ButterKnife;
 /**
  * Created by okorsun on 31.07.16.
  */
-public final class HourlyTemperatureRenderer extends Renderer<HourlyWeatherInfo> {
-    @Bind(R.id.weather_icon)
-    ImageView weatherIcon;
+public final class HourlyWindRenderer extends Renderer<HourlyWeatherInfo> {
+    @Bind(R.id.wind_icon)
+    ImageView windIcon;
 
-    @Bind(R.id.temperature)
-    TextView temperature;
+    @Bind(R.id.wind_speed)
+    TextView windSpeed;
 
     @Bind(R.id.time)
     TextView time;
@@ -40,17 +41,15 @@ public final class HourlyTemperatureRenderer extends Renderer<HourlyWeatherInfo>
 
     @Override
     protected View inflate(LayoutInflater inflater, ViewGroup parent) {
-        return inflater.inflate(R.layout.hourly_temp_rv_item, parent, false);
+        return inflater.inflate(R.layout.hourly_wind_rv_item, parent, false);
     }
 
     @Override
     public void render() {
         HourlyWeatherInfo content = getContent();
-        Glide.with(getContext())
-                .load("http://openweathermap.org/img/w/" + content.getIcon() + ".png")
-                .into(weatherIcon);
-
+        windSpeed.setText(Utils.formatWind(content.getWindSpeed()));
         time.setText(Utils.getTimeString(content.getTimestamp()));
-        temperature.setText(Utils.formatTemp(content.getTemp()));
+        windIcon.setRotation(content.getWindDegree());
+//        windIcon.setColorFilter(Color.WHITE);
     }
 }

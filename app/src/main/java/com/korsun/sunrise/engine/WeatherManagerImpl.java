@@ -13,6 +13,7 @@ import com.korsun.sunrise.engine.converter.CurrentWeatherAllCitiesInfoConverter;
 import com.korsun.sunrise.engine.schedulers.RxSchedulers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -54,25 +55,25 @@ public final class WeatherManagerImpl implements WeatherManager {
 
     @Override
     public Observable<List<HourlyWeatherInfo>> getAllCitiesCurrentWeather() {
-        return Observable.mergeDelayError(getAllCitiesCurrentWeatherFromDB().observeOn(rxSchedulers.getMain()),
+        return Observable.concat(getAllCitiesCurrentWeatherFromDB().observeOn(rxSchedulers.getMain()),
                 fetchAllCitiesCurrentWeather().observeOn(rxSchedulers.getMain()));
     }
 
     @Override
     public Observable<List<HourlyWeatherInfo>> getTodayWeather(City city) {
-        return Observable.mergeDelayError(getTodayWeatherFromDB(city).observeOn(rxSchedulers.getMain()),
+        return Observable.concat(getTodayWeatherFromDB(city).observeOn(rxSchedulers.getMain()),
                 fetchTodayWeather(city).observeOn(rxSchedulers.getMain()));
     }
 
     @Override
     public Observable<List<HourlyWeatherInfo>> getThreeDaysWeather(City city) {
-        return Observable.mergeDelayError(getThreeDaysWeatherFromDB(city).observeOn(rxSchedulers.getMain()),
+        return Observable.concat(getThreeDaysWeatherFromDB(city).observeOn(rxSchedulers.getMain()),
                 fetchThreeDaysWeather(city).observeOn(rxSchedulers.getMain()));
     }
 
     @Override
     public Observable<List<DailyWeatherInfo>> getWeekWeather(City city) {
-        return Observable.mergeDelayError(getWeekWeatherFromDB(city).observeOn(rxSchedulers.getMain()),
+        return Observable.concat(getWeekWeatherFromDB(city).observeOn(rxSchedulers.getMain()),
                 fetchWeekWeather(city).observeOn(rxSchedulers.getMain()));
     }
 
@@ -102,7 +103,9 @@ public final class WeatherManagerImpl implements WeatherManager {
                 .subscribeOn(rxSchedulers.getNetwork())
                 .observeOn(rxSchedulers.getDB())
                 .doOnNext(hourlyWeatherInfos -> cityDao.insertCity(city))
-                .doOnNext(hourlyWeatherInfoDao::insertHourlyWeather);
+                .doOnNext(hourlyWeatherInfoDao::insertHourlyWeather)
+                .switchMap(ignor -> getThreeDaysWeatherFromDB(city))
+                ;
     }
 
     private Observable<List<DailyWeatherInfo>> getWeekWeatherFromDB(City city) {
