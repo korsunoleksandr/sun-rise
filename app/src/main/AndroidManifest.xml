@@ -25,6 +25,8 @@
         </activity>
 
         <activity android:name=".ui.citydetail.CityDetailActivity"/>
+        <activity android:name=".ui.citydetail.AddCityActivity"/>
+
     </application>
 
 </manifest>

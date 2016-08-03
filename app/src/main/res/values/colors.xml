@@ -4,5 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="grey">#666666</color>
+    <color name="grey">#aaaaaa</color>
+
+    <color name="tab_background_selected">@color/colorPrimaryDark</color>
+    <color name="tab_background_unselected">@color/colorPrimary</color>
+    <color name="background">#B7E2F3</color>
 </resources>

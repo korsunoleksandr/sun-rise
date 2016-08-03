@@ -15,7 +15,7 @@ public class DailyResponse {
 
         public Temp temp;
 
-        public Weather weather;
+        public List<Weather> weather;
 
         public float pressure;
 

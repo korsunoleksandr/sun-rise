@@ -50,10 +50,10 @@ public class DailyWeatherInfo {
     private String icon;
 
     @DatabaseField(canBeNull = false)
-    private int windSpeed;
+    private float windSpeed;
 
     @DatabaseField(canBeNull = false)
-    private int windDegree;
+    private float windDegree;
 
     @DatabaseField(canBeNull = false, columnName = TIMESTAMP, uniqueCombo = true)
     private long timestamp;
@@ -102,11 +102,11 @@ public class DailyWeatherInfo {
         return icon;
     }
 
-    public int getWindSpeed() {
+    public float getWindSpeed() {
         return windSpeed;
     }
 
-    public int getWindDegree() {
+    public float getWindDegree() {
         return windDegree;
     }
 
@@ -230,8 +230,8 @@ public class DailyWeatherInfo {
         result = 31 * result + humidity;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + icon.hashCode();
-        result = 31 * result + windSpeed;
-        result = 31 * result + windDegree;
+        result = 31 * result + (windSpeed != +0.0f ? Float.floatToIntBits(windSpeed) : 0);
+        result = 31 * result + (windDegree != +0.0f ? Float.floatToIntBits(windDegree) : 0);
         result = 31 * result + (int) (timestamp ^ (timestamp >>> 32));
         return result;
     }

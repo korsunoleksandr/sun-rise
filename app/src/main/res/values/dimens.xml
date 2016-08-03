@@ -6,4 +6,5 @@
     
     <dimen name="list_side_padding">16dp</dimen>
     <dimen name="two_line_list_item_height">72dp</dimen>
+    <dimen name="bid_weather_icon_size">128dp</dimen>
 </resources>

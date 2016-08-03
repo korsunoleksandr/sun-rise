@@ -1,7 +1,5 @@
 package com.korsun.sunrise.db;
 
-import android.databinding.tool.util.L;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
