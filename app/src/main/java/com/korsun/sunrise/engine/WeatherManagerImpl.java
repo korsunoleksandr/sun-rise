@@ -9,17 +9,13 @@ import com.korsun.sunrise.db.DailyWeatherInfoDao;
 import com.korsun.sunrise.db.HourlyWeatherInfo;
 import com.korsun.sunrise.db.HourlyWeatherInfoDao;
 import com.korsun.sunrise.engine.converter.Converters;
-import com.korsun.sunrise.engine.converter.CurrentWeatherAllCitiesInfoConverter;
 import com.korsun.sunrise.engine.schedulers.RxSchedulers;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import rx.Observable;
-import timber.log.Timber;
 
 /**
  * Created by okorsun on 28.07.16.

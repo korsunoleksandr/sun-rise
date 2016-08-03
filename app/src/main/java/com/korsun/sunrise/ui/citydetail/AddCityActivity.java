@@ -1,16 +1,13 @@
 package com.korsun.sunrise.ui.citydetail;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.korsun.sunrise.R;
 import com.korsun.sunrise.db.City;
-import com.korsun.sunrise.db.HourlyWeatherInfo;
 import com.korsun.sunrise.di.component.ApplicationComponent;
 import com.korsun.sunrise.di.component.DaggerAddCityActivityComponent;
 import com.korsun.sunrise.di.component.UiComponent;
@@ -18,7 +15,6 @@ import com.korsun.sunrise.presentation.base.BaseActivity;
 import com.korsun.sunrise.presentation.citydetail.AddCityPresenter;
 import com.korsun.sunrise.presentation.citydetail.AddCityPresenter.AddCityView;
 import com.korsun.sunrise.ui.citydetail.renderer.AddCityItemRenderer;
-import com.korsun.sunrise.ui.citydetail.renderer.CityItemRenderer;
 import com.korsun.sunrise.ui.widget.DividerItemDecoration;
 import com.pedrogomez.renderers.ListAdapteeCollection;
 import com.pedrogomez.renderers.RVRendererAdapter;

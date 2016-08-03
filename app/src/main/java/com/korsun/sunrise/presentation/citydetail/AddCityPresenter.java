@@ -3,7 +3,6 @@ package com.korsun.sunrise.presentation.citydetail;
 import com.korsun.sunrise.db.City;
 import com.korsun.sunrise.db.CityDao;
 import com.korsun.sunrise.di.UiScope;
-import com.korsun.sunrise.engine.WeatherManager;
 import com.korsun.sunrise.presentation.base.Presenter;
 import com.korsun.sunrise.presentation.base.PresenterView;
 

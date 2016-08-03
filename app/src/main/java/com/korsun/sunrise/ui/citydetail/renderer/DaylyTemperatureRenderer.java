@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide;
 import com.korsun.sunrise.R;
 import com.korsun.sunrise.common.Utils;
 import com.korsun.sunrise.db.DailyWeatherInfo;
-import com.korsun.sunrise.db.HourlyWeatherInfo;
 import com.pedrogomez.renderers.Renderer;
 
 import butterknife.Bind;

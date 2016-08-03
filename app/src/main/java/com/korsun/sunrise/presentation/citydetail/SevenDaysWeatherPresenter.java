@@ -2,7 +2,6 @@ package com.korsun.sunrise.presentation.citydetail;
 
 import com.korsun.sunrise.db.City;
 import com.korsun.sunrise.db.DailyWeatherInfo;
-import com.korsun.sunrise.db.HourlyWeatherInfo;
 import com.korsun.sunrise.di.UiScope;
 import com.korsun.sunrise.engine.WeatherManager;
 import com.korsun.sunrise.presentation.base.Presenter;
@@ -43,8 +42,7 @@ public final class SevenDaysWeatherPresenter extends Presenter<SevenDaysWeatherP
                 .subscribe(delivery ->
                         delivery.split(SevenDaysWeatherView::setData,
                                 (view, t) -> {
-                                    throw new RuntimeException(t);
-//                                    Timber.e("getToday weather error, %s", t.getMessage());
+                                    Timber.e("getToday weather error, %s", t.getMessage());
                                 }));
     }
 

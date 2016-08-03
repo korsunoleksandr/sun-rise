@@ -1,11 +1,9 @@
 package com.korsun.sunrise.api;
 
 import com.korsun.sunrise.api.response.AllCitiesCurrentWeatherResponse;
+import com.korsun.sunrise.api.response.CurrentWeatherResponse;
 import com.korsun.sunrise.api.response.DailyResponse;
 import com.korsun.sunrise.api.response.ThreeHoursResponse;
-import com.korsun.sunrise.api.response.CurrentWeatherResponse;
-
-import java.util.List;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;

@@ -1,7 +1,6 @@
 package com.korsun.sunrise.engine;
 
 import com.korsun.sunrise.db.City;
-import com.korsun.sunrise.db.CityDao;
 import com.korsun.sunrise.db.DailyWeatherInfo;
 import com.korsun.sunrise.db.HourlyWeatherInfo;
 

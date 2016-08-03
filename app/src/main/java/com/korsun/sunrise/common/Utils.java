@@ -8,9 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import rx.Observable;
-import rx.functions.Func0;
-
 /**
  * Created by okorsun on 28.07.16.
  */

@@ -4,8 +4,6 @@ import com.korsun.sunrise.di.UiScope;
 import com.korsun.sunrise.di.module.CityModule;
 import com.korsun.sunrise.presentation.citydetail.ThreeDaysWeatherPresenter;
 import com.korsun.sunrise.presentation.citydetail.ThreeDaysWeatherPresenter.ThreeDaysWeatherView;
-import com.korsun.sunrise.presentation.citydetail.TodayWeatherPresenter;
-import com.korsun.sunrise.presentation.citydetail.TodayWeatherPresenter.TodayWeatherView;
 
 import dagger.Component;
 

@@ -9,8 +9,6 @@ import com.korsun.sunrise.presentation.base.PresenterView;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
-
 /**
  * Created by okorsun on 28.07.16.
  */

@@ -3,7 +3,6 @@ package com.korsun.sunrise.presentation.citydetail;
 import com.korsun.sunrise.db.HourlyWeatherInfo;
 import com.korsun.sunrise.di.UiScope;
 import com.korsun.sunrise.engine.WeatherManager;
-import com.korsun.sunrise.engine.schedulers.RxSchedulers;
 import com.korsun.sunrise.presentation.base.Presenter;
 import com.korsun.sunrise.presentation.base.PresenterView;
 
@@ -34,13 +33,6 @@ public final class CityListPresenter extends Presenter<CityListPresenter.CityLis
     public CityListPresenter(WeatherManager weatherManager) {
         this.weatherManager = weatherManager;
 
-        /*weatherManager.getAllCitiesCurrentWeather()
-                .compose(latestCache())
-                .subscribe(delivery ->
-                        delivery.split(CityListView::setData,
-                                (view, t) -> {
-                                    Timber.e("getAllCitiesCurrentWeather error: %s", t.getMessage());
-                                }));*/
     }
 
     @Override
