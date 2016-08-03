@@ -57,6 +57,8 @@ public class TodayWeatherFragment extends BaseFragment<TodayWeatherPresenter, To
     TextView humidity;
     @Bind(R.id.description)
     TextView description;
+    @Bind(R.id.all_view)
+    View allView;
 
     private RVRendererAdapter<HourlyWeatherInfo> tempAdapter;
     private RVRendererAdapter<HourlyWeatherInfo> windAdapter;
@@ -82,6 +84,8 @@ public class TodayWeatherFragment extends BaseFragment<TodayWeatherPresenter, To
 
     @Override
     public void setData(List<HourlyWeatherInfo> data) {
+        if (data.size() > 0) allView.setVisibility(View.VISIBLE);
+
         tempAdapter.clear();
         tempAdapter.addAll(data);
         tempAdapter.notifyDataSetChanged();

@@ -57,6 +57,8 @@ public class SevenDaysWeatherFragment extends BaseFragment<SevenDaysWeatherPrese
     TextView humidity;
     @Bind(R.id.description)
     TextView description;
+    @Bind(R.id.all_view)
+    View allView;
 
     private RVRendererAdapter<DailyWeatherInfo> tempAdapter;
     private RVRendererAdapter<DailyWeatherInfo> windAdapter;
@@ -82,6 +84,8 @@ public class SevenDaysWeatherFragment extends BaseFragment<SevenDaysWeatherPrese
 
     @Override
     public void setData(List<DailyWeatherInfo> data) {
+        if (data.size() > 0) allView.setVisibility(View.VISIBLE);
+
         tempAdapter.clear();
         tempAdapter.addAll(data);
         tempAdapter.notifyDataSetChanged();
